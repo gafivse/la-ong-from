@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Next.js build output and caches
+.next/
+.next-*/
+out/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment secrets (keep the configuration template)
+.env
+.env.*
+!.env.example
+!.env.supabase.example
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+coverage/
+
+# Logs and database backups
+*.log
+backups/
+*.dump
+
+# Operating system and editor temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
