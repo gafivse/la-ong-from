@@ -29,6 +29,7 @@ import {
   Leaf,
   SlidersHorizontal,
 } from "lucide-react";
+const DateField = dynamic(() => import("./DateField"));
 const Charts = dynamic(() => import("../components/Charts"), {
   ssr: false,
   loading: () => <div className="chart-loading">กำลังโหลดกราฟ…</div>,
@@ -1307,6 +1308,7 @@ function Editor({ modal, boot, busy, error, onClose, onSave }) {
     const dialog = document.getElementById("editor-dialog");
     dialog?.focus();
     const onKey = (e) => {
+      if (document.querySelector("[data-farm-date-picker]")) return;
       if (e.key === "Escape" && !busy) onClose();
       if (e.key === "Tab") {
         const items = dialog.querySelectorAll(
@@ -1329,24 +1331,33 @@ function Editor({ modal, boot, busy, error, onClose, onSave }) {
       previous?.focus();
     };
   }, [busy, onClose]);
-  const input = (k, label, type = "text", required = false) => (
-    <Field
-      key={k}
-      label={label}
-      type={type}
-      value={v[k] ?? ""}
-      onChange={(e) => set(k, e.target.value)}
-      required={required}
-      step={
-        type === "number"
-          ? k === "treeCount" || k === "plantedYear"
-            ? "1"
-            : "0.0001"
-          : undefined
-      }
-      min={type === "number" ? "0" : undefined}
-    />
-  );
+  const input = (k, label, type = "text", required = false) =>
+    type === "date" ? (
+      <DateField
+        key={k}
+        label={label}
+        value={v[k] ?? ""}
+        onChange={(value) => set(k, value)}
+        required={required}
+      />
+    ) : (
+      <Field
+        key={k}
+        label={label}
+        type={type}
+        value={v[k] ?? ""}
+        onChange={(e) => set(k, e.target.value)}
+        required={required}
+        step={
+          type === "number"
+            ? k === "treeCount" || k === "plantedYear"
+              ? "1"
+              : "0.0001"
+            : undefined
+        }
+        min={type === "number" ? "0" : undefined}
+      />
+    );
   const select = (k, label, options, required = false) => (
     <Select
       label={label}

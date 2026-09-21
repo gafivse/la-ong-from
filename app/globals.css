@@ -68,6 +68,9 @@ textarea:focus {
   border-color: #73a189;
   box-shadow: 0 0 0 3px #e8f2eb;
 }
+.mui-date-field {
+  padding-top: 8px;
+}
 button:focus-visible,
 a:focus-visible {
   outline: 3px solid #75ad95;
@@ -386,7 +389,8 @@ main {
   gap: 6px;
   margin-bottom: 16px;
 }
-.field > span {
+.field > span,
+.field > label {
   font-size: calc(15px * var(--app-font-scale, 1));
   color: #697b6c;
 }
@@ -1577,7 +1581,8 @@ footer span:first-child {
   .form-grid {
     gap: 0 12px;
   }
-  .field > span {
+  .field > span,
+  .field > label {
     font-size: calc(14px * var(--app-font-scale, 1));
   }
   .field input,

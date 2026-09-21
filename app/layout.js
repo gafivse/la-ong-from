@@ -1,6 +1,6 @@
 import "./globals.css";
 export const metadata = {
-  title: "บัญชีสวน | Farm Ledger",
+  title: "La-ong-Farm",
   description: "จัดการรายรับ รายจ่าย และเติบโตไปกับสวนของคุณ",
 };
 export default function RootLayout({ children }) {

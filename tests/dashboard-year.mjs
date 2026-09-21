@@ -168,7 +168,7 @@ try {
   const dialog = page.getByRole("dialog");
   const effectiveDate = dialog.getByLabel("วันที่เริ่มใช้จำนวนต้น", { exact: true });
   assert.equal(await effectiveDate.inputValue(), "");
-  await effectiveDate.fill("2025-01-01");
+  await effectiveDate.fill("01/01/2025");
   await dialog.getByRole("button", { name: "บันทึกข้อมูล", exact: true }).click();
   await dialog.waitFor({ state: "hidden" });
   const savedHistory = await db.plotTreeHistory.findUnique({
